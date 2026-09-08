@@ -1,6 +1,6 @@
 package com.example.librarymangementsystem.Entity;
 
-enum BorrowStatus {
+public enum BorrowStatus {
     BORROWED,
     RETURNED,
     OVERDUE,

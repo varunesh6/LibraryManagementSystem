@@ -1,0 +1,37 @@
+{
+  "info": {
+    "name": "College Library Management API",
+    "_postman_id": "2d8c9f9e-0f12-4d7a-9d0a-library-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key":"baseUrl","value":"http://localhost:8080"},
+    {"key":"accessToken","value":""},
+    {"key":"refreshToken","value":""}
+  ],
+  "item": [
+    {"name":"Auth","item":[
+      {"name":"Register","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"name\": \"Student One\",\n  \"email\": \"student@example.com\",\n  \"password\": \"Student123!\"\n}"},"url":"{{baseUrl}}/api/auth/register"}},
+      {"name":"Login","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"email\": \"student@example.com\",\n  \"password\": \"Student123!\"\n}"},"url":"{{baseUrl}}/api/auth/login"}},
+      {"name":"Refresh","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"},"url":"{{baseUrl}}/api/auth/refresh"}},
+      {"name":"Logout","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"},"url":"{{baseUrl}}/api/auth/logout"}}
+    ]},
+    {"name":"Books","item":[
+      {"name":"List Books","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":"{{baseUrl}}/api/books"}},
+      {"name":"Get Book","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":"{{baseUrl}}/api/books/1"}}
+    ]},
+    {"name":"Borrow","item":[
+      {"name":"Borrow Book","request":{"method":"POST","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":"{{baseUrl}}/api/borrow/book/1"}},
+      {"name":"My History","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":"{{baseUrl}}/api/borrow/my-history"}},
+      {"name":"My Active","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":"{{baseUrl}}/api/borrow/my-active"}},
+      {"name":"My Fines","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":"{{baseUrl}}/api/borrow/my-fines"}},
+      {"name":"Return Book","request":{"method":"PUT","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":"{{baseUrl}}/api/borrow/1/return"}}
+    ]},
+    {"name":"Admin","item":[
+      {"name":"Add Book","request":{"method":"POST","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"title\": \"Clean Code\",\n  \"author\": \"Robert C. Martin\",\n  \"genre\": \"Programming\",\n  \"amount\": 500.00,\n  \"available\": true\n}"},"url":"{{baseUrl}}/api/admin/books"}},
+      {"name":"All Users","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":"{{baseUrl}}/api/admin/users"}},
+      {"name":"All Borrowings","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":"{{baseUrl}}/api/admin/borrowings"}},
+      {"name":"All Fines","request":{"method":"GET","header":[{"key":"Authorization","value":"Bearer {{accessToken}}"}],"url":"{{baseUrl}}/api/admin/fines"}}
+    ]}
+  ]
+}

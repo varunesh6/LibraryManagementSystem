@@ -1,4 +1,4 @@
-package com.example.librarymangementsystem.DTO.AdminBorrowUpdateRequest;
+package com.example.librarymangementsystem.DTO;
 
 
 import com.example.librarymangementsystem.Entity.BorrowStatus;
